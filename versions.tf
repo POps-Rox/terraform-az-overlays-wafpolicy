@@ -5,8 +5,8 @@ terraform {
   required_version = ">= 1.3"
   required_providers {
     azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 3.36"
+      source                = "hashicorp/azurerm"
+      version               = "~> 3.36"
       configuration_aliases = [azurerm.hub_network]
     }
     azurenoopsutils = {
