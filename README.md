@@ -25,7 +25,7 @@ provider "azurerm" {
 }
 
 module "overlays-waf-policy" {
-  source  = "azurenoops/overlays-waf-policy/azurerm"
+  source  = "POps-Rox/tf-az-overlays-waf-policy/azurerm"
   version = "x.x.x"
   
   location = "usgovvirginia"
@@ -95,7 +95,7 @@ provider "azurerm" {
 }
 
 module "overlays-waf-policy" {
-  source  = "azurenoops/overlays-waf-policy/azurerm"
+  source  = "POps-Rox/tf-az-overlays-waf-policy/azurerm"
   version = "x.x.x"
   
   create_waf_resource_group = true
