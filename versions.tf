@@ -10,7 +10,7 @@ terraform {
       configuration_aliases = [azurerm.hub_network]
     }
     azurenoopsutils = {
-      source  = "POps-Rox/azurenoopsutils"
+      source  = "azurenoops/azurenoopsutils"
       version = "~> 1.0.4"
     }
   }
