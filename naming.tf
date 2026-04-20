@@ -4,7 +4,7 @@
 #------------------------------------------------------------
 # Azure NoOps Naming - This should be used on all resource naming
 #------------------------------------------------------------
-data "azurenoopsutils_resource_name" "wafp" {
+data "popsrox_resource_name" "wafp" {
   name          = var.workload_name
   resource_type = "azurerm_web_application_firewall_policy"
   prefixes      = [var.org_name, var.use_location_short_name ? module.mod_azregions.location_short : module.mod_azregions.location_cli]

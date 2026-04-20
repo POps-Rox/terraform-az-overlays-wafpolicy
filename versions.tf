@@ -9,8 +9,8 @@ terraform {
       version               = "~> 3.116"
       configuration_aliases = [azurerm.hub_network]
     }
-    azurenoopsutils = {
-      source  = "azurenoops/azurenoopsutils"
+    popsrox-utils = {
+      source  = "POps-Rox/azutils"
       version = "~> 1.0.4"
     }
   }
