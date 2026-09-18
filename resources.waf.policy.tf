@@ -20,7 +20,13 @@ resource "azurerm_web_application_firewall_policy" "waf_policy" {
 
   managed_rules {
     dynamic "managed_rule_set" {
-      for_each = var.managed_rule_set_configuration
+      for_each = length(var.managed_rule_set_configuration) > 0 ? var.managed_rule_set_configuration : [
+        {
+          type                              = "OWASP"
+          version                           = "3.2"
+          rule_group_override_configuration = []
+        }
+      ]
 
       content {
         type    = managed_rule_set.value.type
@@ -53,18 +59,18 @@ resource "azurerm_web_application_firewall_policy" "waf_policy" {
         selector                = exclusion.value.selector
         selector_match_operator = exclusion.value.selector_match_operator
         dynamic "excluded_rule_set" {
-          for_each = exclusion.value.excluded_rule_set_configuration
+          for_each = exclusion.value.excluded_rule_set != null ? exclusion.value.excluded_rule_set : []
           iterator = rule_set
 
           content {
             type    = rule_set.value.type
             version = rule_set.value.version
             dynamic "rule_group" {
-              for_each = rule_set.value.rule_group_configuration
+              for_each = rule_set.value.rule_group != null ? rule_set.value.rule_group : []
 
               content {
                 rule_group_name = rule_group.value.rule_group_name
-                excluded_rules  = rule_group.value.excluded_rules
+                excluded_rules  = rule_group.value.excluded_rules == null ? null : [rule_group.value.excluded_rules]
               }
             }
           }

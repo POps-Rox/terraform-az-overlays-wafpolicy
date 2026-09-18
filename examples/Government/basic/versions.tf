@@ -6,7 +6,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 4.20"
+      version = "~> 5.6"
     }
     azapi = {
       source  = "azure/azapi"
@@ -20,6 +20,13 @@ terraform {
 }
 
 provider "azurerm" {
+  environment = var.environment
+  features {}
+  # subscription_id is provided by the consumer via ARM_SUBSCRIPTION_ID env var
+}
+
+provider "azurerm" {
+  alias       = "hub_network"
   environment = var.environment
   features {}
   # subscription_id is provided by the consumer via ARM_SUBSCRIPTION_ID env var
